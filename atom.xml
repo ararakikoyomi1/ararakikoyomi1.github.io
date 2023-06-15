@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ararakikoyomi1.github.io/</id>
+    <title>czh&amp;xlc&amp;ghr</title>
+    <updated>2023-06-15T07:01:14.397Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ararakikoyomi1.github.io/"/>
+    <link rel="self" href="https://ararakikoyomi1.github.io/atom.xml"/>
+    <subtitle>java http</subtitle>
+    <logo>https://ararakikoyomi1.github.io/images/avatar.png</logo>
+    <icon>https://ararakikoyomi1.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2023, czh&amp;xlc&amp;ghr</rights>
+    <entry>
+        <title type="html"><![CDATA[使用JAVA实现简易HTTP服务器项目]]></title>
+        <id>https://ararakikoyomi1.github.io/post/shi-yong-java-shi-xian-jian-yi-http-fu-wu-qi-xiang-mu/</id>
+        <link href="https://ararakikoyomi1.github.io/post/shi-yong-java-shi-xian-jian-yi-http-fu-wu-qi-xiang-mu/">
+        </link>
+        <updated>2023-06-15T06:51:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="使用java实现简易http服务器项目">使用JAVA实现简易HTTP服务器项目</h1>
+<p>在本文中，我们将介绍如何使用JAVA编程语言实现一个简易的HTTP服务器。HTTP服务器是一种能够处理HTTP请求并返回相应内容的软件应用程序。通过自己实现HTTP服务器，我们可以更好地理解HTTP协议和网络编程的原理。</p>
+<h2 id="准备工作">准备工作</h2>
+<p>在开始编写HTTP服务器之前，我们需要安装Java Development Kit（JDK），以及一个集成开发环境（IDE）如Eclipse或IntelliJ IDEA。确保您已经具备基本的Java编程知识和环境设置。</p>
+<h2 id="创建项目">创建项目</h2>
+<p>首先，我们需要创建一个新的Java项目。在IDE中选择新建项目，命名为&quot;SimpleHTTPServer&quot;（或您喜欢的其他名称）。</p>
+<h2 id="实现http服务器">实现HTTP服务器</h2>
+<p>下面是一个简单的HTTP服务器实现的示例代码：</p>
+<pre><code class="language-java">import java.io.IOException;
+import java.io.OutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class SimpleHTTPServer {
+    public static void main(String[] args) {
+        int port = 8080; // 服务器监听的端口号
+
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println(&quot;服务器已启动，正在监听端口 &quot; + port);
+
+            while (true) {
+                Socket clientSocket = serverSocket.accept();
+                System.out.println(&quot;收到来自 &quot; + clientSocket.getInetAddress() + &quot; 的连接请求&quot;);
+
+                // 读取请求内容
+                // TODO: 解析HTTP请求，处理请求头和请求体
+
+                // 构建响应
+                String response = &quot;HTTP/1.1 200 OK\r\n&quot;
+                        + &quot;Content-Type: text/plain\r\n&quot;
+                        + &quot;Content-Length: 12\r\n&quot;
+                        + &quot;\r\n&quot;
+                        + &quot;Hello World!&quot;;
+
+                // 发送响应
+                OutputStream outputStream = clientSocket.getOutputStream();
+                outputStream.write(response.getBytes(&quot;UTF-8&quot;));
+                outputStream.flush();
+
+                // 关闭连接
+                clientSocket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<p>在上述代码中，我们创建了一个<code>ServerSocket</code>来监听指定的端口（在示例中为8080）。通过<code>accept</code>方法，我们可以接受来自客户端的连接请求。</p>
+<p>接下来，我们可以读取请求内容，并解析HTTP请求头和请求体（在示例中使用了<code>TODO</code>注释，需要您根据实际需求进行处理）。</p>
+<p>然后，我们构建一个简单的HTTP响应，并通过<code>OutputStream</code>将响应发送给客户端。</p>
+<p>最后，我们关闭与客户端的连接。</p>
+<h2 id="测试http服务器">测试HTTP服务器</h2>
+<p>完成代码编写后，我们可以运行项目并测试HTTP服务器的功能。在浏览器中输入<code>http://localhost:8080</code>，您应该能够看到&quot;Hello World!&quot;的响应。</p>
+<h2 id="结论">结论</h2>
+<p>通过本文，我们学习了如何使用JAVA编程语言实现一个简易的HTTP服务器。这只是一个基础示例，实际的HTTP服务器可能需要更多功能和复杂性。然而，通过这个简单的实现，您可以更好地</p>
+<p>理解HTTP协议、网络编程以及服务器开发的基本原理。</p>
+]]></content>
+    </entry>
+</feed>
